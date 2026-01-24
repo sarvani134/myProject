@@ -1,0 +1,8 @@
+.box{
+    border: 2px solid brown;
+    background-color: lavender;
+    padding: 3px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    gap: 10px;
+}
+
