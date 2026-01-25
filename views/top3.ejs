@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>top3 </title>
+    <link  rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <h1>TOP 3 members</h1>
+   <% for(student of students) {%>
+ <form class="box">
+    <h3> Student Name : <%= student.name  %></h3>
+  <h3> Student Marks : <%= student.marks  %></h3>
+ </form>
+  <hr>
+    <% } %>
+    <!-- <script src="/top3.js"></script> -->
+</body>
+</html>
