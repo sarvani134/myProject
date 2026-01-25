@@ -53,6 +53,15 @@ let students=[
 app.listen("3001",()=>{
     console.log("listening from port 3001")
 })
+app.post("/students/revaluation/:id",(req,res)=>{
+    let {id}=req.body;
+    let student=students.find((item)=>item.id===Number(id));
+    if(!student){
+        return res.send("invalid id ")
+    }
+    student.wantRevaluation=true;
+    res.render("revSuccess",{student});
+})
 app.get("/",(req,res)=>{
     res.send("this is home")
 })

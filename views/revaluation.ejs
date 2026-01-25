@@ -6,10 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <form method="post" action="/students/revaluation/<%= student.id  %>">
         <h1>revaluation Form</h1>
         <input type="text" placeholder="enter your name " name="name" />
         <input type="text" placeholder="enter your id " name="id" />
+
         <button>Submit</button>
         
     </form>
