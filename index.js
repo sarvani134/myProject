@@ -13,7 +13,9 @@ let students=[
         id:1,
         age:18,
         marks:100,
-        wantRevaluation:false
+        wantRevaluation:false,
+        isEnrolled:false
+
     },
     {
         name:"millie",
@@ -21,6 +23,7 @@ let students=[
         age:18,
         marks:80,
          wantRevaluation:false,
+         isEnrolled:false
     },
     {
         name:"will",
@@ -28,6 +31,7 @@ let students=[
         age:18,
         marks:10,
         wantRevaluation:false,
+        isEnrolled:false
     },
     {
         name:"mike",
@@ -35,6 +39,7 @@ let students=[
         age:18,
         marks:50,
         wantRevaluation:false,
+        isEnrolled:false
     },
     {
         name:"lucas",
@@ -42,6 +47,7 @@ let students=[
         age:18,
         marks:30,
         wantRevaluation:false,
+        isEnrolled:false
     },
     {
         name:"max",
@@ -49,6 +55,7 @@ let students=[
         age:18,
         marks:60,
         wantRevaluation:false,
+        isEnrolled:false
     },
 ]
 app.listen("3001",()=>{
@@ -76,6 +83,16 @@ app.get("/students/particular",(req,res)=>{
     }
     res.render("show",{student})
 })
+app.get("/students/notEnrolled",(req,res)=>{
+    res.render("notEnrolled",{students})
+})
+app.post("/students/enrolled",(req,res)=>{
+    let {id}=req.body;
+    let student=students.find((item)=>item.id===Number(id));
+    student.isEnrolled=true;
+    res.render("enrolledSuccess")
+
+})
 app.get("/students/revaluation",(req,res)=>{
    
     res.render("revaluation",{students})
@@ -99,6 +116,9 @@ app.get("/students/particular/:id",(req,res)=>{
     }
     res.render("show",{student})
 
+})
+app.get("/students/enroll",(req,res)=>{
+    res.render("enrollForm",{students})
 })
 app.get("/students/fill",(req,res)=>{
     res.render("fillup")

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Form</title>
+</head>
+<body>
+
+    <h1>Enrollment Form</h1>
+
+    <form method="post" action="/students/enrolled">
+
+        <!-- Student Name -->
+        
+
+        <!-- Student ID -->
+        <label for="studentId">Student ID:</label><br>
+        <input
+            type="number"
+            id="studentId"
+            name="id"
+            placeholder="Enter your ID"
+            required
+        /><br><br>
+        <label for="name">Name:</label><br>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+           
+        /><br><br>
+        <p id="msg"></p>
+
+        <!-- Courses -->
+        <p><strong>Select up to 5 courses:</strong></p>
+
+<p id="courseMsg" style="color:red;"></p>
+
+<input type="checkbox" name="courses" value="C Programming" /> C Programming<br>
+<input type="checkbox" name="courses" value="C++ Programming" /> C++ Programming<br>
+<input type="checkbox" name="courses" value="Java" /> Java<br>
+<input type="checkbox" name="courses" value="Python" /> Python<br>
+<input type="checkbox" name="courses" value="JavaScript" /> JavaScript<br>
+<input type="checkbox" name="courses" value="Data Structures" /> Data Structures<br>
+<input type="checkbox" name="courses" value="Algorithms" /> Algorithms<br>
+<input type="checkbox" name="courses" value="Databases" /> Databases<br>
+<input type="checkbox" name="courses" value="Operating Systems" /> Operating Systems<br>
+<input type="checkbox" name="courses" value="Computer Networks" /> Computer Networks<br>
+<input type="checkbox" name="courses" value="Web Development" /> Web Development<br>
+<input type="checkbox" name="courses" value="Machine Learning" /> Machine Learning<br>
+<input type="checkbox" name="courses" value="Artificial Intelligence" /> Artificial Intelligence<br>
+<input type="checkbox" name="courses" value="Cloud Computing" /> Cloud Computing<br>
+<input type="checkbox" name="courses" value="Cyber Security" /> Cyber Security<br><br>
+
+        <!-- Submit -->
+        <button type="submit">Enroll</button>
+
+    </form>
+    <script>
+        const students = <%- JSON.stringify(students) %>;
+    </script>
+
+    <script src="/findName.js"></script>
+    <script src="/courseLimit.js"></script>
+<a href="/students" >Go back to home page</a>
+</body>
+</html>
