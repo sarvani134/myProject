@@ -38,14 +38,14 @@ let students=[
     },
     {
         name:"lucas",
-         id:4,
+         id:5,
         age:18,
         marks:30,
         wantRevaluation:false,
     },
     {
         name:"max",
-         id:4,
+         id:6,
         age:18,
         marks:60,
         wantRevaluation:false,
@@ -54,15 +54,12 @@ let students=[
 app.listen("3001",()=>{
     console.log("listening from port 3001")
 })
-app.post("/students/revaluation/:id",(req,res)=>{
-    let {id}=req.body;
-    let student=students.find((item)=>item.id===Number(id));
-    if(!student){
-        return res.send("invalid id ")
-    }
-    student.wantRevaluation=true;
-    res.render("revSuccess",{student});
+app.get("/students/revalStudents",(req,res)=>{
+    let revaluatedStudents=students.filter((item)=>item.wantRevaluation===true)
+
+    res.render("showReval",{students:revaluatedStudents})
 })
+
 app.get("/",(req,res)=>{
     res.send("this is home")
 })
@@ -79,9 +76,19 @@ app.get("/students/particular",(req,res)=>{
     }
     res.render("show",{student})
 })
-app.get("/students/revaluation/:id",(req,res)=>{
-    res.render("revaluation")
+app.get("/students/revaluation",(req,res)=>{
+   
+    res.render("revaluation",{students})
 
+})
+app.post("/students/revaluation",(req,res)=>{
+    let {id}=req.body;
+    let student=students.find((item)=>item.id===Number(id));
+    if(!student){
+        return res.send("invalid id ")
+    }
+    student.wantRevaluation=true;
+    res.render("revSuccess",{student});
 })
 app.get("/students/particular/:id",(req,res)=>{
     let {id}=req.params;

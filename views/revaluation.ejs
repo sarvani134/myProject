@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Revaluation</title>
 </head>
 <body>
-    <form method="post" action="/students/revaluation/<%= student.id  %>">
-        <h1>revaluation Form</h1>
-        <input type="text" placeholder="enter your name " name="name" />
-        <input type="text" placeholder="enter your id " name="id" />
+
+    <form method="post" action="/students/revaluation">
+        <h1>Revaluation Form</h1>
+
+        <input
+            type="number"
+            id="studentId"
+            placeholder="Enter your ID"
+            name="id"
+        /><br><br>
+
+        <p id="name">Name:</p>
 
         <button>Submit</button>
-        
     </form>
-    
+
+    <!-- SERVER → CLIENT DATA -->
+     
+    <script>
+        const students = <%- JSON.stringify(students) %>;
+    </script>
+
+    <script src="/findName.js"></script>
+
 </body>
 </html>
