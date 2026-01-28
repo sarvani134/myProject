@@ -1,11 +1,13 @@
 const { faker } = require('@faker-js/faker');
 const mysql=require("mysql2")
 const express=require("express")
+const methodOverride=require("method-override")
 const app=express()
 const path=require("path");
 const { log } = require('console');
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(methodOverride("_method"))
 app.set("view engine","ejs")
 app.set("views",path.join(__dirname,"/views"))
 app.use(express.static(path.join(__dirname,"public")))
@@ -46,7 +48,7 @@ app.listen(3001,()=>{
   console.log("listening from port 3001");
   
 })
-app.get("/home",(req,res)=>{
+app.get("/",(req,res)=>{
   res.send("home page of mySql")
 })
 app.get("/data/search",(req,res)=>{
@@ -69,17 +71,44 @@ connection.query(q,[id],(err,result)=>{
  res.render("showUser",{user:result[0]}) 
 })
 })
-
-app.patch("/data/edit/:id",(req,res)=>{
-  let {name,id}=req.body;
-  let newName=name;
-  let q=`update user set username='${name}' where id='${id}' `
-  connection.query(q,(err,result)=>{
-
-  })
-
+app.get("/data/delete",(req,res)=>{
+  res.render("delete")
 })
-app.get("/data/edit/:id",(req,res)=>{
+app.delete("/data/delete",(req,res)=>{
+  let {id}=req.body;
+  let q='delete from user where id=?';
+  connection.query(q,[id],(err,result)=>{
+    if(err){
+      console.log(err);
+      return res.send("data base error")
+    }
+    if(result.affectedRows==0){
+      return res.send("enter a valid id")
+    }
+    res.send("user deleted successfully")
+  })
+})
+app.patch("/data/edit", (req, res) => {
+  const { username, password } = req.body;
+
+  const q = "UPDATE user SET username = ? WHERE password= ?";
+
+  connection.query(q, [username,password], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Database error");
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).send("User not found");
+    }
+    console.log(result)
+    res.send("Username updated successfully");
+  });
+});
+
+app.get("/data/edit",(req,res)=>{
+  res.render("update")
 
 })
 app.get("/data/length",(req,res)=>{
