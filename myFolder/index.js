@@ -46,7 +46,7 @@ app.listen(3001,()=>{
   console.log("listening from port 3001");
   
 })
-app.get("/",(req,res)=>{
+app.get("/home",(req,res)=>{
   res.send("home page of mySql")
 })
 app.get("/data/search",(req,res)=>{
