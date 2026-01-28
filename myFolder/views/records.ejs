@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style.css"  rel="stylesheet"/>
+    <title>Document</title>
+</head>
+<body>
+    <h1>All the users</h1>
+    <a href="/data/add" >Add a new User</a>
+    <a href="/data/length" >Find the size of dataset</a>
+    <a href="/data/search" >Search a  User</a>
+         <div class="box1">
+        <% for(user of result){ %>
+           <div class="box2">
+            
+            <h3>User ID :  <%=user.id  %></h3>
+                <h3>User name :  <%=user.username  %></h3>
+                 <h3>User email :  <%=user.email  %></h3>
+           </div>
+                  
+            <% } %>
+    </div>
+</body>
+</html>

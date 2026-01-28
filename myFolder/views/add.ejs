@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    
+</head>
+<body>
+    <form method="post" action="/data/add">
+        <h1>Adding new Users</h1>
+    <input type="text"  id="nameUser" placeholder="enter name" name="username" />
+    <input type="text"  id="idUser" placeholder="enter id" name="id" />
+    <input type="email"  id="emailUser" placeholder="enter email" name="email" />
+    <input type="password"  id="passwordUser" placeholder="enter password" name="password" />
+    <button>Submit</button>
+    </form>
+    <script >
+        let users=<%- JSON.stringify(data) %>;
+    </script>
+    <script src="/findDup.js" ></script>
+</body>
+</html>

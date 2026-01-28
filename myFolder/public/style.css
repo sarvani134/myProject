@@ -1,0 +1,12 @@
+.box1{
+    margin: 10px;
+    border: 1px solid brown;
+    background-color:lavender;
+    padding: 3px;
+}
+.box2{
+    margin: 10px;
+    border: 1px solid brown;
+    background-color: beige;
+    padding: 3px;
+}
