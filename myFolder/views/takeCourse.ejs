@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Form</title>
+</head>
+<body>
+
+    <h1>Enrollment Form</h1>
+
+    <form method="post" action="/data/takeCourse">
+
+        <!-- user Name -->
+        
+
+        <!-- user ID -->
+        <label for="id">user ID:</label><br>
+        <input
+            type="text"
+            id="id"
+            name="id"
+            placeholder="Enter your ID"
+            required
+        /><br><br>
+       
+        <p id="msg"></p>
+
+        <!-- course -->
+        <!-- <p><strong>Select up to 5 course:</strong></p> -->
+
+<p id="courseMsg" style="color:red;"></p>
+
+<input type="checkbox" name="course" value="C Programming" /> C Programming<br>
+<input type="checkbox" name="course" value="C++ Programming" /> C++ Programming<br>
+<input type="checkbox" name="course" value="Java" /> Java<br>
+<input type="checkbox" name="course" value="Python" /> Python<br>
+<input type="checkbox" name="course" value="JavaScript" /> JavaScript<br>
+<input type="checkbox" name="course" value="Data Structures" /> Data Structures<br>
+<input type="checkbox" name="course" value="Algorithms" /> Algorithms<br>
+<input type="checkbox" name="course" value="Databases" /> Databases<br>
+<input type="checkbox" name="course" value="Operating Systems" /> Operating Systems<br>
+<input type="checkbox" name="course" value="Computer Networks" /> Computer Networks<br>
+<input type="checkbox" name="course" value="Web Development" /> Web Development<br>
+<input type="checkbox" name="course" value="Machine Learning" /> Machine Learning<br>
+<input type="checkbox" name="course" value="Artificial Intelligence" /> Artificial Intelligence<br>
+<input type="checkbox" name="course" value="Cloud Computing" /> Cloud Computing<br>
+<input type="checkbox" name="course" value="Cyber Security" /> Cyber Security<br><br>
+
+        <!-- Submit -->
+        <button type="submit">Enroll</button>
+
+    </form>
+  
+
+<a href="/data/records" >Go back to home page</a>
+</body>
+</html>

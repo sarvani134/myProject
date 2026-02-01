@@ -4,7 +4,7 @@ const express=require("express")
 const methodOverride=require("method-override")
 const app=express()
 const path=require("path");
-const { log } = require('console');
+const { log, error } = require('console');
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(methodOverride("_method"))
@@ -18,15 +18,15 @@ const connection = mysql.createConnection({
   password:"sarvani@123"
 });
 
-let  createRandomUser=()=> {
-  return [
-     faker.string.uuid(),
-    faker.internet.username(),
-     faker.internet.email(),
-     faker.internet.password(),
+// let  createRandomUser=()=> {
+//   return [
+//      faker.string.uuid(),
+//     faker.internet.username(),
+//      faker.internet.email(),
+//      faker.internet.password(),
    
-  ];
-}
+//   ];
+// }
 // let q="insert into user (id,username,email,password) values ? ";
 // let data=[];
 // for(let i=0;i<100;i++){
@@ -103,13 +103,32 @@ app.patch("/data/edit", (req, res) => {
       return res.status(404).send("User not found");
     }
     console.log(result)
-    res.send("Username updated successfully");
+    res.redirect("/data/records");
   });
 });
 
 app.get("/data/edit",(req,res)=>{
   res.render("update")
 
+})
+app.get("/data/takeCourse",(req,res)=>{
+  res.render("takeCourse")
+})
+app.post("/data/takeCourse",(req,res)=>{
+  let {id,course}=req.body;
+  let q='update user set course=? where id=?'
+  connection.query(q,[course,id],(err,result)=>{
+    
+          if(err){
+            console.log(err);
+            
+  return res.send("data base error")
+}
+if(result.affectedRows==0){
+  return res.send("Id doesnt match")
+}
+res.redirect("/data/records")
+  }) 
 })
 app.get("/data/length",(req,res)=>{
   try{
@@ -126,7 +145,18 @@ catch(err){
   res.send("error")
 }
 })
-
+app.get("/data/showCourseTaken",(req,res)=>{
+  let q='select * from user where course is not null';
+  connection.query(q,(err,result)=>{
+    if(err){
+      return res.send(err)
+    }
+    if(result.affectedRows==0){
+      res.send("no student have taken courses")
+    }
+    res.render('showCourseTaken',{result})
+  })
+})
 app.get("/data/records",(req,res)=>{
   
   try{
